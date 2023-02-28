@@ -2,7 +2,7 @@ baseURL = "https://singh-yashwant.github.io/"
 languageCode = "en-us"
 # Add it only if you keep the theme in the `themes` directory.
 # Remove it if you use the theme as a remote Hugo Module.
-theme = "hello-friend"
+theme = "PaperMod"
 paginate = 5
 
 [params]
