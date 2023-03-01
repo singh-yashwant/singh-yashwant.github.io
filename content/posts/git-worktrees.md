@@ -14,10 +14,14 @@ multiple compiler versions as a part of your development arsenal. One might be t
 When I started out I thought about 2 ways of managing it:
 
 1) Keep separate repositories for all, it was easy to use but very difficult to manage (eg moving around commits in between isn't straightforward). When you have the source of size LLVM it will quickly eat up all your memory and also looks very redundant, surely we can do better.
-2) The other option was to create separate branches. This can work but working on multiple branches at once is a nightmare plus an added hassle of keeping track of build folders for all branches separately.
+2) The other option was to create separate branches. This can work but has major cons:
+   - Working on multiple branches at once is a nightmare, to say the least, we all know what happens when you try to edit files on different branches at once in an IDE.
+   - Switching can be expensive, especially for large scale projects developing rapidly and branches diverge really quickly.
+   - It's a hassle to make sure you build to a designated directory for a branch, a bit of carelessness and you'll end up losing a lot of time.
 
 To summarize we would like to:
 - Have git branch like functionality.
+- Easy to work on multiple features simultaneously. 
 - Clean folder structure, separate build folder associated with source.
 
 This is exactly where [git worktree](https://git-scm.com/docs/git-worktree) shines.
