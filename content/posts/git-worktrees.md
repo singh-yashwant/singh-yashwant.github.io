@@ -8,8 +8,8 @@ date: 2023-03-01T00:01:46+05:30
 ---
 
 ## Introduction ##
-If you work on compilers you will always come across the need to have 
-multiple compiler versions as a part of your development arsenal. One might be the latest one(in sync with upstream), one might be for a brand new feature you are working on and the other might be some compiler crash issue that you are exploring. 
+If you work on a large scale project like compilers you will always come across the need to have 
+multiple versions as a part of your development arsenal. One might be the latest one(in sync with upstream), one might be for a brand new feature you are working on and the other might be some crash issue that you are investigating. 
 
 When I started out I thought about 2 ways of managing it:
 
