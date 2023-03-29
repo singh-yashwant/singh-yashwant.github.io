@@ -11,7 +11,7 @@ paginate = 5
   contentTypeName = "posts"
 
   # OS theme is default when not provided, but you can force it to "light" or "dark"
-  defaultTheme = "dark"
+  defaultTheme = "light"
 
   # if you set this to 0, only submenu trigger will be visible
   showMenuItems = 2
@@ -19,13 +19,42 @@ paginate = 5
   # Show reading time in minutes for posts
   showReadingTime = true
 
-  # Show table of contents at the top of your posts (defaults to false)
+  # Show table of contents at the top of your posts (defaults to false)4
   # Alternatively, add this param to post front matter for specific posts
   # toc = true
 
   # Show full page content in RSS feed items
   #(default is Description or Summary metadata in the front matter)
   # rssFullText = true
+
+[params.profileMode]
+enabled = true             # DISABLED
+title = "Yashwant Singh"
+subtitle = "Compiler Engineer"
+imageUrl = "/images/profile.jpeg" # optional
+imageTitle = "Profile image" # optional
+imageWidth = 120
+imageHeight = 120
+
+[[params.socialIcons]]
+name = "Github"
+url = "https://github.com/singh-yashwant"
+
+[[params.socialIcons]]
+name = "Github"
+url = "https://github.com/yashssh/"
+
+[[params.socialIcons]]
+name = "email"
+url = "mailto:singh.yashwant5050@gmail.com"
+
+[[params.socialIcons]]
+name = "LinkedIn"
+url = "https://in.linkedin.com/in/yashwant-singh1b"
+
+[[params.socialIcons]]
+name = "codeforces"
+url = "https://codeforces.com/profile/yashwant_singh"
 
 [languages]
   [languages.en]
@@ -55,14 +84,23 @@ paginate = 5
 
     [languages.en.menu]
       [[languages.en.menu.main]]
-        identifier = "github"
-        name = "Github"
-        url = "https://github.com/singh-yashwant/singh-yashwant.github.io"
+        identifier = "blog"
+        name = "Blog"
+        url = "/posts"
+      [[languages.en.menu.main]]
+        identifier = "home"
+        name = "Home"
+        url = "/"
       [[languages.en.menu.main]]
         identifier = "about"
         name = "About"
-        url = "/about"
+        url = "/about/about"
       [[languages.en.menu.main]]
-        identifier = ""
-        name = "Showcase"
-        url = "/showcase"
+        identifier = "resume"
+        name = "Resume"
+        url = "https://drive.google.com/file/d/1_-RtyeEgRoOOvMLABvObnJws56uOrnvG/view?usp=sharing"
+
+      [[languages.en.menu.main]]
+        identifier = "llvm"
+        name = "LLVM"
+        url = "https://reviews.llvm.org/p/yassingh/"
