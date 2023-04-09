@@ -56,6 +56,10 @@ url = "https://in.linkedin.com/in/yashwant-singh1b"
 name = "codeforces"
 url = "https://codeforces.com/profile/yashwant_singh"
 
+[params.mermaid]
+theme = "dark"
+align = "center"
+
 [languages]
   [languages.en]
     title = "Interpreting compilers"
