@@ -80,3 +80,7 @@ The conditional instruction is moved to the entry block and the loop now is guar
 
 ---
 This is it for this post. I intend to cover more of these optimizations in the future. Thanks for reading!
+
+---
+
+{{< subscribe >}}
