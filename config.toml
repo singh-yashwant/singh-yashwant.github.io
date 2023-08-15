@@ -105,13 +105,12 @@ align = "center"
       [[languages.en.menu.main]]
         identifier = "about"
         name = "About"
-        url = "/about/about"
+        url = "/about"
       [[languages.en.menu.main]]
         identifier = "resume"
         name = "Resume"
-        url = "https://drive.google.com/file/d/1nNUYjasD7ftCANetrLrW0ZwtHZC1gfhg/view?usp=sharing"
-
+        url = "/resume"
       [[languages.en.menu.main]]
         identifier = "llvm"
-        name = "LLVM"
+        name = "LLVM Contributions"
         url = "https://reviews.llvm.org/p/yassingh/"
