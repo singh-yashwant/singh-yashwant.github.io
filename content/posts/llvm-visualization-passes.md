@@ -41,7 +41,7 @@ after this has done executing.
 So how does a sequential IR code gets converted to a graph? Turns out it is straightforward provided we follow the below rules.
 
 1) Starting from the top first instruction goes into the entry block.
-2) Each consecutive instruction goes into the same block until we see a [treminator](https://llvm.org/docs/LangRef.html#terminator-instructions) instruction. eg `br, switch, ret, indirectbr`. 
+2) Each consecutive instruction goes into the same block until we see a [terminator](https://llvm.org/docs/LangRef.html#terminator-instructions) instruction. eg `br, switch, ret, indirectbr`. 
 3) In that case, depending on conditional (`for.cond`) or un-conditional (`entry`) branch create  new block(s) connected to this block via directed edge(s).
 4) Follow rules 2-4 until you run out of instructions.
 
