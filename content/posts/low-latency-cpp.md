@@ -39,33 +39,69 @@ This can be subdivide in 2 parts
 ### Efficient programming
 For progamming a softare efficiently we need 2 kinds of information
 
-**Info about our Softare:**
-How does the compiler works?
-What kind of optimizations take place under the hood?
-Details about the programming language?
-Details about the efficiency of standard libraries supported by the langugage? Etc.
+### Info about our Softare:
+- How does the compiler works?
+- What kind of optimizations take place under the hood?
+- Details about the programming language?
+- Details about the efficiency of standard libraries supported by the langugage? Etc.
 
-We can have a look at some C++ code snippets to have an idea about what we have got here
+In C++ there always are certain big no-no's for writing more efficient code such use refrences in iterators, avoid creating unncessary object copies, using optimized algorithms, etc. Lets have a look at some of the new C++ features from the talk which you can incoroporate in your softare to get faster more optimized asm from your c++ code.
 
-[[assume]]
-Example and code
+**[C++ attribute: assume (since C++23)](https://en.cppreference.com/w/cpp/language/attributes/assume)** based on [paper](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/p1774r8.pdf) by Timur Doumler.
 
-[[restrict]]
-Example and code
+Some examples from the paper
+```c++
+int divide_by_32(int x) {
+    [[assume(x >= 0)]];
+    return x/32; // The instructions produced for the division
+    // may omit handling of negative values
+}
+int f(int y) {
+    [[assume(++y == 43)]]; // y is not incremented
+    return y; // Statement may be replaced with return 42;
+}
+```
+The asm code generated for the first example will be vastly different after the compiler properly make use of [[assume]] as we don't have to worry about x being negative and the register value can simply be right shifted by 5.
 
-[[unsequenced]]
-Example and code
+The expression inside the [[]] must always evaluate to true otherwise you are gonna end up with undefined behaviour in your code.
+I'm not sure how will a compiler handle `assume` I'm guessing it can be attached as some kind of metadata to be used by the compiler as hints for performing optimizations.
 
-Timur covered lot more techiniques in his talk and the some features that will end up seeing in future c++ standards (c++23 and 26).
+**noalias/restrict To be proposed for c++26?**
+Aliasing in c++ prevent a lot of optimizations in c++ from ever taking place for eg
+```c++
+void f(int* a, int* b){
+    *a += 1;
+    *b += 1;
+    *a += 1;
+}
+
+void f(int* restrict a, int* b){
+    *a += 1;
+    *b += 1;
+    *a += 1;
+}
+```
+For function `f` compiler will produce 3 seprate add instructions while for `g` it will produce 2 (increase a by 2 once and b by 1 since we know a & b don't point to same object).
+
+**[[unsequenced]]** part C23 standard talks about adding them to C++26. Based on paper [here](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n2887.htm).
+For a function to be marked `unsequenced` it must be `stateless`, `effectless`, `independent`, `idempotent`, `reproducible` and `noleak`. Kindly refer the paper for exact definition but the gist of it is the function should not define thread local objects, shouldn't have side effects, should give same result on repeated calls depend or modify other objects and shouldn't have any memory leaks.
+
+For example:
+```c++
+double cosine(double x) [[unsequenced]];
+if(cosine(a) > cosine(b) || cosine(a) > cosine(c) || cosine(a) > cosine(d)) {
+    ...
+}
+```
+Here since we know `consine` is `unsequenced` we should compute `cosine(a)` just once and reuse the result when called 2 more times.
+### Info about our hardware: ###
+- Architeure of the CPU/GPU being prgrammed.
+- Cache hierchy and lookup details.
+- Support for SIMD/ SIMR / vector programming.
   
-**Info about our hardware:**
-Architeure of the CPU/GPU being prgrammed.
-Cache hierchy and lookup details.
-Support for SIMD/ SIMR / vector programming.
-  
-SIMR is basically SIMD on registers, instead of memory you have registers aligned together and a single instruction executes on them together.
+SIMR is basically SIMD on registers, instead of memory you have smaller values packed into large registers and you do an operation on all of them.
 
 Things that usually end up slowing us down
-- Branch hazards
-- Data hazards
-- Hardware hazards
+- **Branch hazards**: Avoid branch mispredicts as much as we can. eg performing a sign dependent computation on an vector of integers will be faster on a sorted array where branch predictor can rightly predict the correct branch most of the times.
+- **Data hazards**: 
+- **Hardware hazards**: This is just a fancy term for hardware limitations with certain instruction patterns due a bug in the hardware or by design itself. 
