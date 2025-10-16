@@ -2,7 +2,6 @@
 title: "SSA form and PHI nodes in compilers"
 date: 2023-04-09T20:52:34+05:30
 draft: true
-mermaid: true
 ---
 
 *Static Single Assignment (SSA) is a strict format to write code that enables a compiler to do all kinds of optimizations. Let's have a look at them in detail 
@@ -77,11 +76,3 @@ Enough intro about IR, I'm sure you all know this.
 ---
 
 > Thanks for reading!!
-
-{{< mermaid >}}
-flowchart LR
-    y("👫 You") --> h{"🤝 Found this helpful?"}
-    h --> |Yes| r[/"⭐ Check out my featured posts!"/]
-    h --> |No| su[/"📝 Suggest changes by clicking near the title"/]
-    click r "/categories/featured" _blank
-{{< /mermaid >}}
