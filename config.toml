@@ -34,10 +34,10 @@ pagination.pagerSize = 5
 enabled = true             # DISABLED
 title = "Yashwant Singh"
 subtitle = "Compiler Engineer"
-imageUrl = "/images/profile.jpeg" # optional
+imageUrl = "/images/profile2.jpg" # optional
 imageTitle = "Profile image" # optional
-imageWidth = 120
-imageHeight = 120
+imageWidth = 250
+imageHeight = 250
 
 [[params.socialIcons]]
 name = "Github"
